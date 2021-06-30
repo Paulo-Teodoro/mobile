@@ -1,0 +1,16 @@
+{
+  "name": "Backend",
+  "version": "1.0.0",
+  "description": "Teste de projeto node",
+  "main": "index.js",
+  "author": "Paulo Teodoro",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "nodemon": "^2.0.7"
+  }
+}

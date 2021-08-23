@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text, Image, StatusBar, StyleSheet} from 'react-native'
+import {View, Text, Image, StatusBar, StyleSheet, FlatList} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Icon } from 'react-native-elements';
 
 import avatar from "../../assets/avatar.jpeg";
-
+import api from "../service/api";
+import ListItem from "../components/ListItem";
 
 export default function Index({navigation}) {
 
   const [user, setUser] = useState('');
+  const [materias, setMaterias] = useState(listaMaterias());
+
+  async function listaMaterias() {
+    const materias = await api.get('/materia');
+    console.log(materias)
+    if(materias.status == 200) {
+      setMaterias(materias.data);
+    } else {
+      let msgError = response.data;
+      console.log(msgError.mensagem);
+    }
+  }
 
   useEffect(() => {
     AsyncStorage.getItem('@user').then(user => {
@@ -47,11 +60,24 @@ export default function Index({navigation}) {
         </View>
       </View>
       <View>
-        <Text>Content</Text>
+        <FlatList
+          data = {materias}
+          keyExtractor = {item => item._id}
+          renderItem = {
+            ({item}) => (
+              <ListItem
+                data = {item}
+              />
+            )
+          }
+          ItemSeparatorComponent = {() => <Separator/>}
+        />
       </View>
     </View>
   );
 }
+
+const Separator = () => <View style={{flex:1, height: 2, backgroundColor: '#DDD'}}></View>
 
 const styles = StyleSheet.create({
   container: {

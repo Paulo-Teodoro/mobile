@@ -6,7 +6,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import * as Crypto from 'expo-crypto';
 
 import api from '../service/api';
-import logo from '../../assets/favicon.png';
+import logo from '../../assets/faccar.jpeg';
 
 
 export default function Login({navigation}) {
@@ -28,9 +28,7 @@ export default function Login({navigation}) {
     } else {
       let msgError = response.data;
       console.log(msgError.mensagem);
-    }
-
-    
+    }    
   }
 
 

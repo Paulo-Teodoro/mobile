@@ -73,10 +73,6 @@ export default function Usuario({navigation}) {
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.textButton}>Salvar</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={back}>
-                <Text>Voltar</Text>
-            </TouchableOpacity>
         </View>
     );
 }

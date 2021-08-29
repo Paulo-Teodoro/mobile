@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {View, Text, Image, StatusBar, StyleSheet, FlatList} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Icon } from 'react-native-elements';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 import avatar from "../../assets/avatar.jpeg";
 import api from "../service/api";
@@ -10,11 +12,11 @@ import ListItem from "../components/ListItem";
 export default function Index({navigation}) {
 
   const [user, setUser] = useState('');
-  const [materias, setMaterias] = useState(listaMaterias());
+  const [materias, setMaterias] = useState();
 
   async function listaMaterias() {
     const materias = await api.get('/materia');
-    console.log(materias)
+    console.log(materias.data)
     if(materias.status == 200) {
       setMaterias(materias.data);
     } else {
@@ -24,15 +26,31 @@ export default function Index({navigation}) {
   }
 
   useEffect(() => {
+    if(!materias) {
+      listaMaterias()
+    }
     AsyncStorage.getItem('@user').then(user => {
       user = JSON.parse(user);
       if(!user) {
         navigation.navigate("Login");
       } else {
         setUser(user);
+        //console.log(user);
       }
     })
   })
+
+  function notas(materiaid) {
+    navigation.navigate('MateriaNotas', {
+      materia: materiaid
+    });
+  }
+
+  function faltas(materiaid) {
+    navigation.navigate('MateriaFaltas', {
+      materia: materiaid
+    });
+  }
 
   function logoff() {
     AsyncStorage.removeItem('@user');
@@ -61,12 +79,15 @@ export default function Index({navigation}) {
       </View>
       <View>
         <FlatList
+          style={styles.listItens}
           data = {materias}
           keyExtractor = {item => item._id}
           renderItem = {
             ({item}) => (
               <ListItem
                 data = {item}
+                handleLeft = {()=>{ notas(item._id) }}
+                handleRight = {()=>{ faltas(item._id) }}
               />
             )
           }
@@ -88,6 +109,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     flexDirection: "row",
     paddingVertical: 10,
+    marginLeft: 10,
     width: "100%"
   },
   Name: {
@@ -113,6 +135,10 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    marginLeft: 20
+  },
+  listItens: {
+    marginTop: 20
   }
 });

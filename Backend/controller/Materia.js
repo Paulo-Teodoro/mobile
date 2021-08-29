@@ -6,7 +6,7 @@ module.exports = {
         return res.json(materias)
     },
 
-    async store(req, res){ //grava o usuario no banco
+    async store(req, res){ //grava a Materia no banco
         const {name} = req.body;
         const materia = await Materia.create({name});
         return res.json(materia);
@@ -14,10 +14,10 @@ module.exports = {
 
     async update(req,res){ //edita
         var id = req.query.id; //pega o id na url
-        let materia = await Materia.findById(id); //busca o Materia pelo id
+        let materia = await Materia.findById(id); //busca a Materia pelo id
         materia.name = req.body.name;
         materia = await Materia.update(materia); //faz o update
-        return res.json({mensagem : 'Atualizar o usuario ' + id + ' com os dados do post ' + materia.name});
+        return res.json({mensagem : 'Atualizar a Materia ' + id + ' com os dados do post ' + materia.name});
     },
 
     async delete(req, res){

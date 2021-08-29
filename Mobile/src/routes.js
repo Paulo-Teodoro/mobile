@@ -5,7 +5,9 @@ import Index from './pages/Index';
 import Especialidades from './pages/Especialidades';
 import Medicos from './pages/Medicos';
 import Clinicas from './pages/Clinicas';
-import Usuario from './pages/Usuario'
+import Usuario from './pages/Usuario';
+import MateriaNotas from './pages/MateriaNotas';
+import MateriaFaltas from './pages/MateriaFaltas';
 
 
 export default Routes = createAppContainer(
@@ -15,6 +17,8 @@ export default Routes = createAppContainer(
         Especialidades,
         Medicos,
         Clinicas,
-        Usuario
+        Usuario,
+        MateriaNotas,
+        MateriaFaltas
     })
 )

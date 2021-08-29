@@ -23,7 +23,7 @@ export default function Login({navigation}) {
       await AsyncStorage.setItem('@user', JSON.stringify(response.data)); //armazena o user na memória como uma string
   
       // const value = await AsyncStorage.getItem('@user'); //pega o user
-     navigation.navigate('Index');
+     navigation.navigate('Home');
 
     } else {
       let msgError = response.data;

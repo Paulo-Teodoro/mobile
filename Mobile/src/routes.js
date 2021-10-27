@@ -7,7 +7,7 @@ import Medicos from './pages/Medicos';
 import Clinicas from './pages/Clinicas';
 import Usuario from './pages/Usuario';
 import MateriaNotas from './pages/MateriaNotas';
-import MateriaFaltas from './pages/MateriaFaltas';
+import MateriaFaltas from './pages/MateriaFaltas'; 
 
 
 export default Routes = createAppContainer(

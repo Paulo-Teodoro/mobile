@@ -7,6 +7,7 @@ const MedicoClinicaController = require('../controller/MedicoClinica');
 const MateriaController = require('../controller/Materia');
 const NotaController = require('../controller/Nota');
 const FaltaController = require('../controller/Falta');
+const ProtocoloController = require('../controller/Protocolo');
 
 const routes = express.Router();
 
@@ -47,6 +48,12 @@ routes.post('/falta', FaltaController.store);
 routes.put('/falta', FaltaController.update);
 routes.delete('/falta', FaltaController.delete);
 routes.get('/falta-materia', FaltaController.faltaMateria);
+
+routes.get('/protocolo', ProtocoloController.index);
+routes.post('/protocolo', ProtocoloController.store);
+routes.put('/protocolo', ProtocoloController.update);
+routes.delete('/protocolo', ProtocoloController.delete);
+routes.get('/protocolo-aluno', ProtocoloController.protocoloAluno);
 
 routes.get('/clinica', ClinicaController.index);
 routes.post('/clinica', ClinicaController.store);

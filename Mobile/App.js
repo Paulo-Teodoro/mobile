@@ -10,6 +10,7 @@ import MateriaNotas from './src/pages/MateriaNotas';
 import MateriaFaltas from './src/pages/MateriaFaltas';
 import Login from './src/pages/Login';
 import Usuario from './src/pages/Usuario';
+import Protocolos from './src/pages/Protocolos';
 
 
 export default function App(){
@@ -21,6 +22,7 @@ export default function App(){
         <Stack.Screen name="MateriaFaltas" component={MateriaFaltas} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Usuario" component={Usuario} />
+        <Stack.Screen name="Protocolos" component={Protocolos} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text, Image, StatusBar, StyleSheet, FlatList} from 'react-native'
+import {View, Text, Image, StatusBar, StyleSheet, FlatList, Touchable, TouchableOpacity} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Icon } from 'react-native-elements';
 import 'react-native-gesture-handler';
@@ -61,6 +61,10 @@ export default function Index({navigation}) {
     navigation.navigate("Usuario")
   }
 
+  function protocolos() {
+    navigation.navigate("Protocolos")
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -77,6 +81,9 @@ export default function Index({navigation}) {
           <Icon onPress={settings} style={styles.config} name='cog' type='font-awesome' />  
         </View>
       </View>
+      <TouchableOpacity onPress={protocolos} style={styles.button}>
+          <Text style={styles.textButton}>Protocolos</Text>
+      </TouchableOpacity>
       <View>
         <FlatList
           style={styles.listItens}
@@ -140,5 +147,17 @@ const styles = StyleSheet.create({
   },
   listItens: {
     marginTop: 20
+  },
+  button: {
+    backgroundColor: "#3259a8",
+    marginTop: 20,
+    borderRadius: 10,
+    textAlign: "center",
+    padding: 4
+  },
+  textButton: {
+    color: '#FFF',
+    fontSize: 30,
+    textAlign: "center"
   }
 });
